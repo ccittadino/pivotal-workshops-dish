@@ -4,26 +4,26 @@
 
 # Reference: https://dzone.com/articles/installing-openjdk-11-on-ubuntu-1804-for-real (Installing OpenJDK Manually)
 
-if [ -f ~/openjdk-11+28_linux-x64_bin.tar.gz ]
-then
-    echo "* Java downloaded already." 
-else
-  echo "* Downloading java..."
-  wget -nc https://download.java.net/java/GA/jdk11/28/GPL/openjdk-11+28_linux-x64_bin.tar.gz -O ~/openjdk-11+28_linux-x64_bin.tar.gz
-fi
+# if [ -f ~/openjdk-11+28_linux-x64_bin.tar.gz ]
+# then
+#     echo "* Java downloaded already." 
+# else
+#   echo "* Downloading java..."
+#   wget -nc https://download.java.net/java/GA/jdk11/28/GPL/openjdk-11+28_linux-x64_bin.tar.gz -O ~/openjdk-11+28_linux-x64_bin.tar.gz
+# fi
 
-if [ -d /usr/lib/jvm ]
-then
-    echo "* Java already installed." 
-else
-  echo "* Installing java..."
-  mkdir /usr/lib/jvm
-  tar xfvz ~/openjdk-11+28_linux-x64_bin.tar.gz --directory /usr/lib/jvm
-fi
+# if [ -d /usr/lib/jvm ]
+# then
+#     echo "* Java already installed." 
+# else
+#   echo "* Installing java..."
+#   mkdir /usr/lib/jvm
+#   tar xfvz ~/openjdk-11+28_linux-x64_bin.tar.gz --directory /usr/lib/jvm
+# fi
 
-echo "* Adding java to path..."
-echo "export JAVA_HOME=/usr/lib/jvm/jdk-11/" >> ~/.bashrc
-echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> ~/.bashrc
+# echo "* Adding java to path..."
+# echo "export JAVA_HOME=/usr/lib/jvm/jdk-11/" >> ~/.bashrc
+# echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> ~/.bashrc
 
 # ==============================================
 
@@ -39,34 +39,42 @@ echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> ~/.bashrc
 
 # Reference: https://redis.io/topics/quickstart
 
-if [ -f ~/redis-stable.tar.gz ]
-then
-    echo "* Redis downloaded already." 
-else
-  echo "* Downloading redis..."
-  wget -nc http://download.redis.io/redis-stable.tar.gz -O ~/redis-stable.tar.gz
-fi
+# if [ -f ~/redis-stable.tar.gz ]
+# then
+#     echo "* Redis downloaded already." 
+# else
+#   echo "* Downloading redis..."
+#   wget -nc http://download.redis.io/redis-stable.tar.gz -O ~/redis-stable.tar.gz
+# fi
 
-if [ -f /usr/local/bin/redis-server ]
-then
-    echo "* Redis already installed." 
-else
-  echo "* Installing redis..."
-  tar xvzf ~/redis-stable.tar.gz --directory ~
-  cd ~/redis-stable
-  make
-  make install
-fi
+# if [ -f /usr/local/bin/redis-server ]
+# then
+#     echo "* Redis already installed." 
+# else
+#   echo "* Installing redis..."
+#   tar xvzf ~/redis-stable.tar.gz --directory ~
+#   cd ~/redis-stable
+#   make
+#   make install
+# fi
 
-echo "* Starting redis..."
-redis-server --daemonize yes
+# echo "* Starting redis..."
+# redis-server --daemonize yes
+
+docker run --name some-redis -d redis
 
 # ==============================================
 
-# TODO: add cf-cli install
+echo "* Installing cf cli..."
+wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+sudo apt-get update
+sudo apt-get install cf-cli
+
+# ==============================================
 
 # TODO: add login config against single account
 
 # TODO: add auto creation of developer-laptop space
 
-# ==============================================(4m14s)
+# ==============================================
