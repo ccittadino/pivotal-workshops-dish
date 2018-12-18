@@ -60,7 +60,7 @@ fi
 echo "* Starting redis..."
 redis-server --daemonize yes
 
-# ==============================================(3m40s)
+# ==============================================
 
 # TODO: add cf-cli install
 
@@ -68,7 +68,7 @@ redis-server --daemonize yes
 
 # TODO: add auto creation of developer-laptop space
 
-# ==============================================(3m40s)
+# ==============================================(4m14s)
 
 echo "* Adding auto-move to workspace for shells..."
 echo "cd /vagrant" >> /home/vagrant/.bashrc
