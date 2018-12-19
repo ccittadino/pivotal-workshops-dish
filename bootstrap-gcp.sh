@@ -62,7 +62,8 @@
 # redis-server --daemonize yes
 
 # Reference: https://hub.docker.com/_/redis/
-docker run --name some-redis -d redis
+echo "* Installing redis..."
+docker run --name redis -p 6379:6379 -d redis
 # To connect via cli:
 # docker run -it --link some-redis:redis --rm redis redis-cli -h redis -p 6379
 # To connect via an app:
