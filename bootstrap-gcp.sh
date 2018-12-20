@@ -65,9 +65,9 @@
 echo "* Installing redis..."
 docker run --name redis -p 6379:6379 -d redis
 # To connect via cli:
-# docker run -it --link some-redis:redis --rm redis redis-cli -h redis -p 6379
+# docker run -it --link redis:redis --rm redis redis-cli -h redis -p 6379
 # To connect via an app:
-# docker run --name some-app --link some-redis:redis -d application-that-uses-redis
+# docker run --name some-app --link redis:redis -d application-that-uses-redis
 
 # ==============================================
 
